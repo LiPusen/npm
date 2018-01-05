@@ -79,5 +79,6 @@ const getParams = ul => {
 module.exports = {
     uuid,
     getStr,
-    getParse
+    getParse, 
+    is
 }
