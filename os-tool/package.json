@@ -1,6 +1,6 @@
 {
   "name": "os-tool",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Common tool methods",
   "main": "index.js",
   "scripts": {
@@ -10,5 +10,6 @@
     "tool"
   ],
   "author": "liyq",
+  "git": "https://github.com/LiPusen/npm/tree/master/os-tool",
   "license": "MIT"
 }
