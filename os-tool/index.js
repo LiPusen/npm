@@ -10,6 +10,16 @@ for(let i = 0; i < type.length; i++) {
 		};
 	})(i);
 }
+// 判断一个对象是否为空
+is.Empty = (a) => {
+    if(is.Object(a)) {
+        return JSON.stringify(a) == '{}';
+    } else if(is.Array(a)) {
+        return !Boolean(a.length);
+    } else {
+        return !Boolean(a);
+    }
+}
 // 将对象转换成字符串
 const getStr = val => {
 	let returnVal = (is.Object(val) || is.Array(val)) ? JSON.stringify(val) : val;
