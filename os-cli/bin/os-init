@@ -12,8 +12,6 @@ const inquirer = require('inquirer')
 const rm = require('rimraf').sync
 const logger = require('../lib/logger')
 const generate = require('../lib/generate')
-const checkVersion = require('../lib/check-version')
-const warnings = require('../lib/warnings')
 const localPath = require('../lib/local-path')
 
 const isLocalPath = localPath.isLocalPath
@@ -36,7 +34,7 @@ program.on('--help', () => {
   console.log('  Examples:')
   console.log()
   console.log(chalk.gray('    # create a new project with an official template'))
-  console.log('    $ os init webpack my-project')
+  console.log('    $ os init react my-project')
   console.log()
   console.log(chalk.gray('    # create a new project straight from a github template'))
   console.log('    $ os init username/os my-project')
@@ -57,20 +55,17 @@ help()
  * Settings.
  */
 
-let template = program.args[0]
-const hasSlash = template.indexOf('/') > -1
+// let template = program.args[0]
+let t = program.args[0]
+let template = 'LiPusen/scaffold';
+console.log(template)
 const rawName = program.args[1]
 const inPlace = !rawName || rawName === '.'
 const name = inPlace ? path.relative('../', process.cwd()) : rawName
 const to = path.resolve(rawName || '.')
 const clone = program.clone || false
-
-const tmp = path.join(home, '.os-templates', template.replace(/\//g, '-'))
-if (program.offline) {
-  console.log(`> Use cached template at ${chalk.yellow(tildify(tmp))}`)
-  template = tmp
-}
-
+const tmp = rawName;
+console.log(template);
 /**
  * Padding.
  */
@@ -114,25 +109,7 @@ function run () {
       logger.fatal('Local template "%s" not found.', template)
     }
   } else {
-    checkVersion(() => {
-      if (!hasSlash) {
-        // use official templates
-        const officialTemplate = 'vuejs-templates/' + template
-        if (template.indexOf('#') !== -1) {
-          downloadAndGenerate(officialTemplate)
-        } else {
-          if (template.indexOf('-2.0') !== -1) {
-            warnings.v2SuffixTemplatesDeprecated(template, inPlace ? '' : name)
-            return
-          }
-
-          // warnings.v2BranchIsNowDefault(template, inPlace ? '' : name)
-          downloadAndGenerate(officialTemplate)
-        }
-      } else {
-        downloadAndGenerate(template)
-      }
-    })
+      downloadAndGenerate(template)
   }
 }
 
@@ -147,10 +124,11 @@ function downloadAndGenerate (template) {
   spinner.start()
   // Remove if local template exists
   if (exists(tmp)) rm(tmp)
+  console.log(template, tmp);
   download(template, tmp, { clone }, err => {
     spinner.stop()
     if (err) logger.fatal('Failed to download os ' + template + ': ' + err.message.trim())
-    generate(name, tmp, to, err => {
+    generate(name, tmp, t, to, err => {
       if (err) logger.fatal(err)
       console.log()
       logger.success('Generated "%s".', name)
