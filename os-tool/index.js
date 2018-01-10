@@ -85,10 +85,24 @@ const getParams = ul => {
     }
     return obj;
 }
+// 格式化错误信息
+const ormErr = er => {
+	const errors = {};
+    let a, e;
+
+    for(a = 0; a < errorsIn.length; a++) {
+      e = errorsIn[a];
+
+      errors[e.property] = errors[e.property] || [];
+      errors[e.property].push(e.msg);
+    }
+    return errors;
+}
 
 module.exports = {
     uuid,
     getStr,
     getParse, 
-    is
+    is,
+    ormErr
 }
