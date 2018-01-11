@@ -90,12 +90,13 @@ const ormErr = er => {
 	const errors = {};
     let a, e;
 
-    for(a = 0; a < er.length; a++) {
+    if(er && er.length) for(a = 0; a < er.length; a++) {
       e = er[a];
 
       errors[e.property] = errors[e.property] || [];
       errors[e.property].push(e.msg);
-    }
+    };
+    
     return errors;
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "os-tool",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Common tool methods",
   "main": "index.js",
   "scripts": {
