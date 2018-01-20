@@ -100,10 +100,13 @@ const ormErr = er => {
     return errors;
 }
 
+const qrcode = require('./qrcode');
+
 module.exports = {
     uuid,
     getStr,
     getParse, 
     is,
-    ormErr
+    ormErr,
+    qrcode
 }
