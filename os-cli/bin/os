@@ -3,6 +3,6 @@
 require('commander')
     .version(require('../package').version)
     .usage('<command> [options]')
-    .command('init', 'generate a new project from a template')
-    .command('list', 'list available official templates')
+    .command('init', '通过模板名称初始化一个新的项目')
+    .command('list', '目前可支持的模板项目列表')
     .parse(process.argv)

@@ -1,40 +1,27 @@
 #!/usr/bin/env node
 
-const logger = require('../lib/logger')
-const request = require('request')
+// 输出带色彩的CMD提示
 const chalk = require('chalk')
 
 /**
- * Padding.
+ * 输出模板列表
  */
-
-console.log()
-process.on('exit', () => {
-  console.log()
-})
-
-/**
- * List repos.
- */
-
-request({
-  url: 'https://api.github.com/repos/LiPusen/scaffold/git/trees/master',
-  headers: {
-    'User-Agent': 'os-cli'
-  }
-}, (err, res, body) => {
-  if (err) logger.fatal(err)
-  const requestBody = JSON.parse(body)
-  if (Array.isArray(requestBody.tree)) {
-    console.log('  Available official templates:')
-    console.log()
-    requestBody.tree.forEach(repo => {
-      repo.mode == '040000' && console.log(
-        '  ' + chalk.yellow('★') +
-        '  ' + chalk.blue(repo.path)
-      )
-    })
-  } else {
-    console.error(requestBody.message)
-  }
-})
+const list = [{
+   name: 'vue2',
+   msg: 'vue2项目通用模板，含建议开发规范！约定优于配置'
+ }, {
+   name: 'react',
+   msg: 'react项目通用脚手架，含建议开发规范! 约定优于配置'
+ }, {
+   name: 'expressApi',
+   msg: 'express框架接口项目开发模板，含orm数据库插件，可以快速接入项目'
+ }]
+console.log();
+console.log(chalk.yellow('   目前可以支持的构建模板：'));
+console.log();
+list.forEach(item => {
+  console.log(
+    chalk.green('★') + '  ' + chalk.blue(item.name) + '\n\t' + chalk.whiteBright(item.msg)
+  );
+});
+console.log();
