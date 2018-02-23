@@ -1,6 +1,6 @@
 {
   "name": "os-tmp-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "tmp cli",
   "main": "index.js",
   "preferGlobal": true,
@@ -18,26 +18,12 @@
   "author": "liyq",
   "license": "MIT",
   "dependencies": {
-    "async": "^2.6.0",
     "chalk": "^2.3.0",
     "commander": "^2.12.2",
-    "consolidate": "^0.15.0",
-    "download-git-repo": "^1.0.1",
-    "handlebars": "^4.0.11",
     "inquirer": "^4.0.2",
-    "metalsmith": "^2.3.0",
-    "minimatch": "^3.0.4",
-    "multimatch": "^2.1.0",
     "ora": "^1.3.0",
-    "read-metadata": "^1.0.0",
-    "request": "^2.83.0",
-    "rimraf": "^2.6.2",
-    "semver": "^5.4.1",
-    "tildify": "^1.2.0",
-    "uid": "0.0.2",
-    "user-home": "^2.0.0",
-    "validate-npm-package-name": "^3.0.0",
-    "coffee-script": "1.12.7"
+    "fs-extra": "^5.0.0",
+    "validate-npm-package-name": "^3.0.0"
   },
   "engines": {
     "node": ">=6.0.0"

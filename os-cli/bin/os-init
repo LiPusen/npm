@@ -1,30 +1,19 @@
 #!/usr/bin/env node
 
-const download = require('download-git-repo')
 const program = require('commander')
-const exists = require('fs').existsSync
 const path = require('path')
+// 加载动画
 const ora = require('ora')
-const home = require('user-home')
-const tildify = require('tildify')
+const fs = require('fs-extra')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
-const rm = require('rimraf').sync
 const logger = require('../lib/logger')
-const generate = require('../lib/generate')
-const localPath = require('../lib/local-path')
-
-const isLocalPath = localPath.isLocalPath
-const getTemplatePath = localPath.getTemplatePath
 
 /**
  * Usage.
  */
 
-program
-  .usage('<template-name> [project-name]')
-  .option('-c, --clone', 'use git clone')
-  .option('--offline', 'use cached template')
+program.usage('<template-name> [project-name]')
 
 /**
  * Help.
@@ -33,11 +22,8 @@ program
 program.on('--help', () => {
   console.log('  Examples:')
   console.log()
-  console.log(chalk.gray('    # create a new project with an official template'))
+  console.log(chalk.gray('    # 利用内置模板快速初始化一个项目'))
   console.log('    $ os init react my-project')
-  console.log()
-  console.log(chalk.gray('    # create a new project straight from a github template'))
-  console.log('    $ os init username/os my-project')
   console.log()
 })
 
@@ -55,32 +41,25 @@ help()
  * Settings.
  */
 
-// let template = program.args[0]
-let t = program.args[0]
-let template = 'LiPusen/scaffold';
-console.log(template)
+let template = program.args[0]
 const rawName = program.args[1]
-const inPlace = !rawName || rawName === '.'
-const name = inPlace ? path.relative('../', process.cwd()) : rawName
+const inPlace = !fs.pathExistsSync(process.cwd() + '/' + rawName)
 const to = path.resolve(rawName || '.')
-const clone = program.clone || false
-const tmp = rawName;
-console.log(template);
+const nw = path.join(__dirname, '..')
+
 /**
  * Padding.
  */
-
-console.log()
 process.on('exit', () => {
   console.log()
 })
 
-if (exists(to)) {
+if(fs.pathExistsSync(nw + '/tmp/' + template)) {
   inquirer.prompt([{
     type: 'confirm',
     message: inPlace
-      ? 'Generate project in current directory?'
-      : 'Target directory exists. Continue?',
+      ? '确定要在'+ process.cwd() +'目录下创建项目吗?'
+      : '项目目录已经存在, 继续创建吗?',
     name: 'ok'
   }]).then(answers => {
     if (answers.ok) {
@@ -88,50 +67,20 @@ if (exists(to)) {
     }
   }).catch(logger.fatal)
 } else {
-  run()
+  logger.fatal('"%s"暂无构建模板，请通过os list查看支持列表', template)
 }
 
 /**
- * Check, download and generate the project.
+ * 将模板项目复制到本地
  */
 
 function run () {
-  // check if template is local
-  if (isLocalPath(template)) {
-    const templatePath = getTemplatePath(template)
-    if (exists(templatePath)) {
-      generate(name, templatePath, to, err => {
-        if (err) logger.fatal(err)
-        console.log()
-        logger.success('Generated "%s".', name)
-      })
-    } else {
-      logger.fatal('Local template "%s" not found.', template)
-    }
-  } else {
-      downloadAndGenerate(template)
-  }
-}
-
-/**
- * Download a generate from a template repo.
- *
- * @param {String} template
- */
-
-function downloadAndGenerate (template) {
-  const spinner = ora('downloading template')
-  spinner.start()
-  // Remove if local template exists
-  if (exists(tmp)) rm(tmp)
-  console.log(template, tmp);
-  download(template, tmp, { clone }, err => {
-    spinner.stop()
-    if (err) logger.fatal('Failed to download os ' + template + ': ' + err.message.trim())
-    generate(name, tmp, t, to, err => {
-      if (err) logger.fatal(err)
-      console.log()
-      logger.success('Generated "%s".', name)
-    })
-  })
+    const spinner = ora('构建项目中......');
+    spinner.start();
+    fs.removeSync(to);
+    fs.ensureDirSync(to);
+    fs.copy(nw + '/tmp/' + template, to).then(() => {
+      spinner.stop();
+      console.log(chalk.green('构建成功！使用npm或yarn安装依赖，开始你的项目吧！'))
+    }).catch(err => console.log('构建异常\r\n' + err))
 }
