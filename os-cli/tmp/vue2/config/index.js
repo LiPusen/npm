@@ -21,13 +21,13 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/v4': {
-        target: 'http://m.maizuo.com',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/v4': '/v4'
-        }
-      }
+//    '/v4': {
+//      target: '',
+//      changeOrigin: true,
+//      pathRewrite: {
+//        '^/v4': '/v4'
+//      }
+//    }
     },
     // css文件路径映射
     cssSourceMap: false

@@ -38,11 +38,11 @@ module.exports = {
         include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.less$/,
-        exclude: /^node_modules$/,
-        include: [resolve('src/style')],
-        loader: 'style-loader!css-loader!autoprefixer-loader?{ browsers: ["last 500 versions"] }!less-loader'
-      },
+	        test: /\.less$/,
+	        exclude: /^node_modules$/,
+	        include: [resolve('src/style')],
+	        loader: 'style-loader!css-loader!autoprefixer-loader?{ browsers: ["last 500 versions"] }!less-loader'
+	    },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',

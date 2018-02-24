@@ -1,13 +1,17 @@
-import filmItem from './filmItem'
-import imgLoad from './imgLoad'
-import more from './more'
-import navbar from './navbar'
-import sidebar from './sidebar'
+// 注册组件
+import LayoutLeft from './layout/layoutLeft'
+import LayoutHeader from './layout/layoutHeader'
+import LayoutMenu from './layout/layoutMenu'
+import Breadcrumb from './layout/breadcrumb'
+import Button from './ui/button'
+import Panel from './ui/panel'
+
 
 export default {
-	filmItem,
-	imgLoad,
-	more,
-	navbar,
-	sidebar
+    LayoutLeft,
+    LayoutHeader,
+    LayoutMenu,
+    Breadcrumb,
+    Button,
+    Panel
 }

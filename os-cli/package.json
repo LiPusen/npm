@@ -1,6 +1,6 @@
 {
   "name": "os-tmp-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "tmp cli",
   "main": "index.js",
   "preferGlobal": true,

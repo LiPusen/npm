@@ -12,7 +12,7 @@ module.exports = {
   }),
   postcss: [
 		require('autoprefixer')({
-			browsers: ['last 100 versions']
+			browsers: ['last 200 versions']
 		})
 	],
 }
