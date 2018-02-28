@@ -1,20 +1,20 @@
 // 声明数据类型集
 const type = ["Boolean", "Number", "String", "Function", "Array", "Date", "RegExp", "Object", "Error"];
 
-let is = {};
+const ck = {};
 // 检测数据类型
 for(let i = 0; i < type.length; i++) {
 	(function(k) {
-		is[type[k]] = function(obj) {
+		ck[type[k]] = function(obj) {
 			return Object.prototype.toString.call(obj) === '[object ' + type[k] + ']';
 		};
 	})(i);
 }
 // 判断一个对象是否为空
-is.Empty = (a) => {
-    if(is.Object(a)) {
+ck.Empty = (a) => {
+    if(ck.Object(a)) {
         return JSON.stringify(a) == '{}';
-    } else if(is.Array(a)) {
+    } else if(ck.Array(a)) {
         return !Boolean(a.length);
     } else {
         return !Boolean(a);
@@ -22,7 +22,7 @@ is.Empty = (a) => {
 }
 // 将对象转换成字符串
 const getStr = val => {
-	let returnVal = (is.Object(val) || is.Array(val)) ? JSON.stringify(val) : val;
+	let returnVal = (ck.Object(val) || ck.Array(val)) ? JSON.stringify(val) : val;
 	return returnVal;
 }
 // 将字符串格式化
@@ -106,7 +106,7 @@ module.exports = {
     uuid,
     getStr,
     getParse, 
-    is,
+    ck,
     ormErr,
     qrcode
 }

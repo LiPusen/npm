@@ -213,7 +213,7 @@ var QRCode;
 		var useSVG = document.documentElement.tagName.toLowerCase() === "svg";
 	}catch(e){
 		//TODO handle the exception
-		throw('Please open in a browser environment!')
+		!process && console.log('Please open in a browser environment!')
 	}
 
 	// Drawing in DOM by using Table tag
