@@ -2,13 +2,14 @@
 const type = ["Boolean", "Number", "String", "Function", "Array", "Date", "RegExp", "Object", "Error"];
 
 const ck = {};
+
 // 检测数据类型
-for(let i = 0; i < type.length; i++) {
+for(var b = 0; b < type.length; b++) {
 	(function(k) {
 		ck[type[k]] = function(obj) {
 			return Object.prototype.toString.call(obj) === '[object ' + type[k] + ']';
 		};
-	})(i);
+	})(b);
 }
 // 判断一个对象是否为空
 ck.Empty = (a) => {
