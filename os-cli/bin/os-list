@@ -7,14 +7,20 @@ const chalk = require('chalk')
  * 输出模板列表
  */
 const list = [{
-   name: 'vue2',
-   msg: 'vue2项目通用模板，含建议开发规范！约定优于配置'
- }, {
-   name: 'react',
-   msg: 'react项目通用脚手架，含建议开发规范! 约定优于配置'
- }, {
-   name: 'expressApi',
-   msg: 'express框架接口项目开发模板，含orm数据库插件，可以快速接入项目'
+    name: 'vue2',
+    msg: 'vue2项目通用模板，含建议开发规范！约定优于配置'
+  }, {
+    name: 'react',
+    msg: 'react项目通用脚手架，含建议开发规范! 约定优于配置'
+  }, {
+    name: 'expressApi',
+    msg: 'express框架接口项目开发模板，含orm数据库插件，可以快速接入项目'
+  }, {
+    name: 'exeUrl',
+    msg: '利用electron技术将一个URL包装成一个桌面应用，支持跨域访问'
+  }, {
+    name: 'exeCli',
+    msg: '利用electron技术制作开发工具类demo'
  }]
 console.log();
 console.log(chalk.yellow('   目前可以支持的构建模板：'));
