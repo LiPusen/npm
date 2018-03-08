@@ -12,7 +12,7 @@ for(var b = 0; b < type.length; b++) {
 	})(b);
 }
 // 判断一个对象是否为空
-ck.Empty = (a) => {
+ck.Empty = function(a) {
     if(ck.Object(a)) {
         return JSON.stringify(a) == '{}';
     } else if(ck.Array(a)) {
@@ -22,12 +22,12 @@ ck.Empty = (a) => {
     }
 }
 // 将对象转换成字符串
-const getStr = val => {
+const getStr = function(val) {
 	let returnVal = (ck.Object(val) || ck.Array(val)) ? JSON.stringify(val) : val;
 	return returnVal;
 }
 // 将字符串格式化
-const getParse = val => {
+const getParse = function(val) {
 	try{
 		return JSON.parse(val);
 	}catch(e){
@@ -36,7 +36,7 @@ const getParse = val => {
 	}
 }
 // 生成UUID
-const uuid = (l, radix) => {
+const uuid = function(l, radix) {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
     let uid = [], i;
     radix = radix || chars.length;
@@ -60,7 +60,7 @@ const uuid = (l, radix) => {
     return uid.join('');
 }
 // 获取浏览器地址所携带参数
-const getParams = ul => {
+const getParams = function(ur) {
 	ur = ur || window.location.href;
     if(ur.indexOf('#') != -1) {
         ur = ur.split('#')[1];
@@ -87,7 +87,7 @@ const getParams = ul => {
     return obj;
 }
 // 格式化错误信息
-const ormErr = er => {
+const ormErr = function(er) {
 	const errors = {};
     let a, e;
 
