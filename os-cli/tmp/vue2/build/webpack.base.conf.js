@@ -1,7 +1,10 @@
 var path = require('path')
+var os = require('os')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+var HappyPack = require('happypack');
+var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -34,7 +37,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: 'babel-loader!happypack/loader?id=happybabel',
         include: [resolve('src'), resolve('test')]
       },
       {
@@ -60,5 +63,13 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+      new HappyPack({
+          id: 'happybabel',
+          loaders: ['babel-loader'],
+          threadPool: happyThreadPool,
+          verbose: true
+      })
+  ]
 }
