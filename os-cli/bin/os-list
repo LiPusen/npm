@@ -10,6 +10,9 @@ const list = [{
     name: 'vue2',
     msg: 'vue2项目通用模板，含建议开发规范！约定优于配置'
   }, {
+    name: 'vue2Mob',
+    msg: 'vue2移动端项目通用模板，自定义组件，约定优于配置'
+  }, {
     name: 'react',
     msg: 'react项目通用脚手架，含建议开发规范! 约定优于配置'
   }, {

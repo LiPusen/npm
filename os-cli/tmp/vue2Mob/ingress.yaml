@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+  name: ingress-myyagent-web
+  namespace: development
+spec:
+  tls:
+  - hosts:
+    - myyagent.meia8.com
+    secretName: myyagent.meia8.com
+  rules:
+  - host: myyagent.meia8.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: myyagent-web
+          servicePort: 80

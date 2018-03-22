@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: myyagent-web
+  namespace: development
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: myyagent-web
+    spec:
+      containers:
+      - image: registry.meia8.com/front-end/common:latest
+        imagePullPolicy: Always
+        name: myyagent-web
+      imagePullSecrets:
+        - name: "registry.meia8.com"
+      restartPolicy: Always
