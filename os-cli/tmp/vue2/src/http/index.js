@@ -1,5 +1,5 @@
 // 封装请求
-//import api from './api'
+import api from './api'
 import axios from 'axios';
 import { Notification, Loading } from 'element-ui'
 import store from '../store'
@@ -26,14 +26,7 @@ const htp = axios.create({
 
 // 处理接口规范的公有方法
 const server = ({ method = 'post', ur, options = {} }) => {
-	let p, m = false;
-	let load = { close: () => {} };
-	setTimeout(() => {
-		!m && (load = Loading.service({
-			fullscreen: true,
-			text: '拼命加载中...'
-		}));
-	}, 500);
+	let p;
 	// 混入公共参数
 	const ops = JSON.parse(JSON.stringify(store.state.common));
 	Object.assign(ops, options);
@@ -41,16 +34,12 @@ const server = ({ method = 'post', ur, options = {} }) => {
 		case 'get':
 			p = new Promise(function(resolve, reject) {				
 				htp.get(ur, { params: ops }).then(response => {
-					m = true;
-					load.close();
 					if(response.data.code && response.data.code == 200) {
 						resolve(response.data.body);
 					} else {
 						reject(response.data.msg);
 					}
 				}, er => {
-					m = true;
-					load.close();console.dir(p)
 					errHandler(er);
 				});
 			});
@@ -58,16 +47,12 @@ const server = ({ method = 'post', ur, options = {} }) => {
 		case 'post':
 			p = new Promise(function(resolve, reject) {
 				htp.post(ur, ops).then(response => {
-					m = true;
-					load.close();
 					if(response.data.code && response.data.code == 200) {
 						resolve(response.data.body);
 					} else {
 						reject(response.data.msg);
 					}
-				}, er => {
-					m = true;
-					load.close();					
+				}, er => {				
 					errHandler(er);
 				})
 			});

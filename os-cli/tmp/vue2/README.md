@@ -36,7 +36,7 @@ npm run build --report
 
 - vue-router@2.3.1
 
-- vue-resource@1.3.4
+- axios@0.17.1
 
 - ......
 

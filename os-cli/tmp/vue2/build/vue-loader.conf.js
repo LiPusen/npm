@@ -12,7 +12,13 @@ module.exports = {
   }),
   postcss: [
 		require('autoprefixer')({
-			browsers: ['last 200 versions']
+			browsers: ['last 500 versions']
 		})
-	],
+  ],
+  transformToRequire: {
+    video: ['src', 'poster'],
+    source: 'src',
+    img: 'src',
+    image: 'xlink:href'
+  }
 }
