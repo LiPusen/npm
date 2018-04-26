@@ -1,6 +1,7 @@
 // 接口统一管理
 const api = {
     login: '/login',
+    art: '/article/list'
 }
 // 不同环境分发
 // for(var k in api) {

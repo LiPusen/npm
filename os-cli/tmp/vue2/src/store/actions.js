@@ -13,10 +13,13 @@ export default {
             Message.error('登录失败，请重试！')
         })
     },
-    aDelCur({ commit, state }, data) {
-    	return new Promise((resolve) => {
-	        commit('mDelCur', data)
-	        resolve([...state.visitedViews])
-	    })
+    aGetList({ commit }, data) {
+    	htp({ur: 'art', method: 'get'}).then(res => {
+    		console.log(res)
+    		data.callback && data.callback(res);
+    	}, er => {
+    		data.er && data.er();
+            Message.error('请求异常，请重试！')
+    	})
     }
 }

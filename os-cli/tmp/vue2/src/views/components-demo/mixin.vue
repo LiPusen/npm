@@ -37,7 +37,7 @@
           <div style="height:100px;">
             <el-form :model="demo" :rules="demoRules">
               <el-form-item prop="title">
-                <md-input icon="search" name="title" placeholder="输入标题" v-model="demo.title">标题</md-input>
+                <v-mdinput icon="search" name="title" placeholder="输入标题" v-model="demo.title">标题</v-mdinput>
               </el-form-item>
             </el-form>
           </div>
@@ -50,9 +50,9 @@
             <span>图片hover效果</span>
           </div>
           <div class="component-item">
-            <pan-thumb width="100px" height="100px" image="https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191">
+            <v-panthumb width="100px" height="100px" image="https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191">
               vue-element-admin
-            </pan-thumb>
+            </v-panthumb>
           </div>
         </el-card>
       </el-col>
@@ -74,7 +74,7 @@
             <span>hover text</span>
           </div>
           <div class="component-item">
-            <mallki className="mallki-text" text="vue-element-admin"></mallki>
+            <v-mallki className="mallki-text" text="vue-element-admin"></v-mallki>
           </div>
         </el-card>
       </el-col>
@@ -87,7 +87,7 @@
             <span>Share</span>
           </div>
           <div class="component-item" style="height:420px;">
-            <dropdown-menu style="margin:0 auto;" title='系列文章' :items='articleList'></dropdown-menu>
+            <v-share style="margin:0 auto;" title='系列文章' :items='articleList'></v-share>
           </div>
         </el-card>
       </el-col>
@@ -97,20 +97,10 @@
 </template>
 
 <script>
-import PanThumb from '@/components/PanThumb'
-import MdInput from '@/components/MDinput'
-import Mallki from '@/components/TextHoverEffect/Mallki'
-import DropdownMenu from '@/components/Share/dropdownMenu'
 import waves from '@/directive/waves/index.js' // 水波纹指令
 
 export default {
   name: 'componentMixin-demo',
-  components: {
-    PanThumb,
-    MdInput,
-    Mallki,
-    DropdownMenu
-  },
   directives: {
     waves
   },

@@ -11,6 +11,11 @@ import Theme from './ThemePicker'
 import Ham from './Hamburger'
 import Sopan from './ScrollPane'
 import Sobar from './ScrollBar'
+import Panthumb from './PanThumb'
+import Mallki from './TextHoverEffect'
+import Gitlogo from './GithubCorner'
+import Mdinput from './MDinput'
+import Share from './Share'
 
 export default {
     Lang,
@@ -24,5 +29,10 @@ export default {
     Theme,
     Ham,
     Sopan,
-    Sobar
+    Sobar,
+    Panthumb,
+    Mallki,
+    Gitlogo,
+    Mdinput,
+    Share
 }

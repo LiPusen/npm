@@ -87,6 +87,11 @@ export const commonRoute = [
         	name: 'tab', 
         	meta: { code: 10057, tree: 'example' }
         }, {
+        	path: '/export-excel', 
+        	component: _import('excel/exportExcel'), 
+        	name: 'exportExcel', 
+        	meta: { code: 10058, tree: 'example' }
+        }, {
         	path: '/download', 
         	component: _import('zip/index'), 
         	name: 'zip', 
@@ -105,23 +110,6 @@ export const commonRoute = [
 ]
 // 具有权限的动态路由
 export const asyncRoute = [
-    {
-        path: '/permission',
-        component: _import('layout/Layout'),
-        redirect: '/permission/index',
-        meta: { roles: ['admin'] }, // you can set roles in root nav
-        children: [{
-          path: 'index',
-          component: _import('permission/index'),
-          name: 'permission',
-          meta: {
-            title: 'permission',
-            icon: 'lock',
-            roles: ['admin'] // or you can only set roles in sub nav
-          }
-        }]
-      },
-    
       {
         path: '/components',
         component: _import('layout/Layout'),

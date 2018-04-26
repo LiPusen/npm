@@ -4,8 +4,8 @@
       <img src='https://wpimg.wallstcn.com/e7d23d71-cf19-4b90-a1cc-f56af8c0903d.png'>
     </div>
     <div style="position:relative;">
-      <pan-thumb class="panThumb" :image="avatar"></pan-thumb>
-      <mallki className='mallki-text' text='vue-element-admin'></mallki>
+      <v-panthumb class="panThumb" :image="userInfos.avatar"></v-panthumb>
+      <v-mallki className='mallki-text' text='vue-element-admin'></v-mallki>
       <div style="padding-top:35px;" class='progress-item'>
         <span>Vue</span>
         <el-progress :percentage="70"></el-progress>
@@ -27,13 +27,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import PanThumb from '@/components/PanThumb'
-import Mallki from '@/components/TextHoverEffect/Mallki'
+import { mapState } from 'vuex'
 
 export default {
-  components: { PanThumb, Mallki },
-
   data() {
     return {
       statisticsData: {
@@ -43,11 +39,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'name',
-      'avatar',
-      'roles'
-    ])
+    ...mapState(['userInfos'])
   },
   filters: {
     statusFilter(status) {

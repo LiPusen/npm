@@ -44,6 +44,7 @@
 
 <script>
 import { fetchList } from '@/api/article'
+import { mapActions } from 'vuex'
 import { parseTime } from '@/utils'
 
 export default {

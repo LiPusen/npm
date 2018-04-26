@@ -33,7 +33,7 @@ const server = ({ method = 'post', ur, options = {} }) => {
 	switch(method) {
 		case 'get':
 			p = new Promise(function(resolve, reject) {				
-				htp.get(ur, { params: ops }).then(response => {
+				htp.get(api(ur), { params: ops }).then(response => {
 					if(response.data.code && response.data.code == 200) {
 						resolve(response.data.body);
 					} else {
@@ -46,13 +46,13 @@ const server = ({ method = 'post', ur, options = {} }) => {
 			break;
 		case 'post':
 			p = new Promise(function(resolve, reject) {
-				htp.post(ur, ops).then(response => {
+				htp.post(api(ur), ops).then(response => {
 					if(response.data.code && response.data.code == 200) {
 						resolve(response.data.body);
 					} else {
 						reject(response.data.msg);
 					}
-				}, er => {				
+				}, er => {	
 					errHandler(er);
 				})
 			});
